@@ -12,8 +12,8 @@
         <ul>
         <% teammates.forEach(function(mate) { %>
             <li><%= mate.firstName + ' ' + mate.lastName %>
-                    <input id="edit" type="submit" value="Edit" />
-                <form id="id-form" action=<%= "/edit/" + mate.lastName %> method="post">
+                    <input class="edit" type="submit" value="Edit" />
+                <form class="id-form" action=<%= "/edit/" + mate.lastName %> method="post">
                     First name:<br>
                       <input type="text" id="firstname" name="firstname" value= <%= mate.firstName %> >
                       <br>
@@ -41,12 +41,12 @@
         </form>
     </div>
     <script type="text/javascript">
-         document.getElementById('edit').onclick = function() {
-      document.getElementsByСlass('id-form').style.display = 'block';
-    }
-        // var onclickByEdit = document.getElementsById('edit');
-        //     onclickByEdit.onclick = onclickByEdit;
-
+        let list = document.getElementsByClassName('edit');
+        for (let i = 0; i < list.length; i++) {
+            list[i].onclick = function() {
+                list[i].nextElementSibling.style.display = 'block';
+            };
+        }
     </script>
 </body>
 
