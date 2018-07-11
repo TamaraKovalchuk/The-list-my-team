@@ -7,12 +7,47 @@
 </head>
 
 <body>
-    <h1>Team lv-330</h1>
-    <ul>
-    <% teammates.forEach(function(mate) { %>
-        <li><%= mate.firstName + ' ' + mate.lastName %></li>
-    <% }); %>
-    </ul>
+    <div class="list">
+        <h1>Team lv-330</h1>
+        <ul>
+        <% teammates.forEach(function(mate) { %>
+            <li><%= mate.firstName + ' ' + mate.lastName %>
+                    <input id="edit" type="submit" value="Edit" />
+                <form id="id-form" action=<%= "/edit/" + mate.lastName %> method="post">
+                    First name:<br>
+                      <input type="text" id="firstname" name="firstname" value= <%= mate.firstName %> >
+                      <br>
+                      Last name:<br>
+                      <input type="text" id="lastname" name="lastname" value= <%= mate.lastName %>>
+                      <br><br>
+                      <input id="save" type="submit" value="Submit">
+                </form>
+                <form action=<%= "/delete/" + mate.lastName %> >
+                    <input id="delete" type="submit" value="Delete" />
+                </form>
+
+            </li>
+
+        <% }); %>
+        </ul>
+        <form action="/add" method="post">
+          First name:<br>
+          <input type="text" id="firstname" name="firstname" >
+          <br>
+          Last name:<br>
+          <input type="text" id="lastname" name="lastname" >
+          <br><br>
+          <input id="save" type="submit" value="Submit">
+        </form>
+    </div>
+    <script type="text/javascript">
+         document.getElementById('edit').onclick = function() {
+      document.getElementsByСlass('id-form').style.display = 'block';
+    }
+        // var onclickByEdit = document.getElementsById('edit');
+        //     onclickByEdit.onclick = onclickByEdit;
+
+    </script>
 </body>
 
 </html>
