@@ -1,0 +1,10 @@
+doctype html
+html(lang='en')
+  head
+    link(rel="stylesheet" href="/simple.css")
+    title Team lv-330
+  body
+    h1 Team lv-330
+    ul
+      each val in teammates
+        li= val.firstName + ' ' + val.lastName

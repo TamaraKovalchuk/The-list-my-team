@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/simple.css">
+    <title>Team lv-330</title>
+</head>
+
+<body>
+    <h1>Team lv-330</h1>
+    <ul style="color: red;">
+    <% teammates.forEach(function(mate) { %>
+        <li><%= mate.firstName + ' ' + mate.lastName %></li>
+    <% }); %>
+    </ul>
+</body>
+
+</html>

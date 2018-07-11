@@ -1,0 +1,36 @@
+{
+    "teammates": [
+        {
+            "firstName": "Tamara",
+            "lastName": "Kovalchuk"
+        },
+        {
+            "firstName": "Anna",
+            "lastName": "Dron"
+        },
+        {
+            "firstName": "Maksym",
+            "lastName": "Javir"
+        },
+        {
+            "firstName": "Andrii",
+            "lastName": "Korin"
+        },
+        {
+            "firstName": "Iurii",
+            "lastName": "Besidka"
+        },
+        {
+            "firstName": "Vitalii",
+            "lastName": "Dvorian"
+        },
+        {
+            "firstName": "Volodja",
+            "lastName": "Pitchuk"
+        },
+        {
+            "firstName": "Artur",
+            "lastName": "Khomenko"
+        }
+    ]
+}
