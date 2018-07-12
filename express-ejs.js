@@ -12,9 +12,6 @@ app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'ejs');
 
-// const pug = require('pug');
-// // Compile the source code
-// const compiledFunction = pug.compileFile('./templates/team.pug');
 
 //css
 app.use(express.static(path.join(__dirname, 'public')));
@@ -24,13 +21,6 @@ let saveData;
         if (err) throw err;
         saveData = JSON.parse(data).teammates;
     });
-
-
-//request:create
-
-
-
-//request:add
 
 
 const router = express.Router();

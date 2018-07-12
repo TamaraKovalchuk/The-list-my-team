@@ -13,14 +13,14 @@
         <% teammates.forEach(function(mate) { %>
             <li><%= mate.firstName + ' ' + mate.lastName %>
                     <input class="edit" type="submit" value="Edit" />
-                <form class="id-form" action=<%= "/edit/" + mate.lastName %> method="post">
-                    First name:<br>
+                <form class="id-form" action= "/edit/<%= mate.lastName %>"method="post">
+                      <p>First name:</p><br>
                       <input type="text" id="firstname" name="firstname" value= <%= mate.firstName %> >
                       <br>
-                      Last name:<br>
+                      <p>Last name:</p><br>
                       <input type="text" id="lastname" name="lastname" value= <%= mate.lastName %>>
                       <br><br>
-                      <input id="save" type="submit" value="Submit">
+                      <input id="save" type="submit" value="Save">
                 </form>
                 <form action=<%= "/delete/" + mate.lastName %> >
                     <input id="delete" type="submit" value="Delete" />
@@ -30,24 +30,37 @@
 
         <% }); %>
         </ul>
-        <form action="/add" method="post">
+        <form action="/add" method="post" id= "form-add">
           First name:<br>
           <input type="text" id="firstname" name="firstname" >
           <br>
           Last name:<br>
           <input type="text" id="lastname" name="lastname" >
           <br><br>
-          <input id="save" type="submit" value="Submit">
+          <input id="save" type="submit" value="Save">
         </form>
     </div>
-    <script type="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript">
+
         let list = document.getElementsByClassName('edit');
         for (let i = 0; i < list.length; i++) {
             list[i].onclick = function() {
                 list[i].nextElementSibling.style.display = 'block';
             };
         }
+
+          $('#form-add').submit(function(e){
+            const firstname = $('#firstname').val();
+            const lastname = $('#lastname').val();
+            const url = $(this).attr('action');
+            $.post(url, {firstname:firstname, lastname:lastname}).
+
+          });
+
+
     </script>
+
+
 </body>
 
 </html>
