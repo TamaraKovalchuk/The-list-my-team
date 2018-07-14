@@ -17,9 +17,11 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 let saveData;
+let freeId = 9;
     fs.readFile('./teammates.json', (err, data) => {
         if (err) throw err;
         saveData = JSON.parse(data).teammates;
+
     });
 
 
@@ -33,29 +35,31 @@ router.get('/', function(req, res, next) {
 });
 
 //request:delete
-router.get('/delete/:lastname', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
     saveData = saveData.filter(function(item) {
-      return item.lastName != req.params.lastname;
+      return item.id != req.params.id;
     });
-    res.redirect('/');
+    res.send();
 });
 //add
-router.post('/add', (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body);
-   saveData = [...saveData, {firstName: req.body.firstname, lastName: req.body.lastname}];
-   res.render('team', {teammates:saveData});
+   saveData = [...saveData, {id: freeId++, firstName: req.body.firstname, lastName: req.body.lastname}];
+   res.send(saveData);
+
 });
 //edit
-
-router.post('/edit/:lastname', (req, res) => {
+router.post('/edit/:id', (req, res) => {
         saveData.forEach(function(item) {
-        if(item.lastName === req.params.lastname){
+        if(item.id === req.params.id){
             item.lastName = req.body.lastname;
             item.firstName = req.body.firstname;
         }
     });
-    res.redirect('/');
+    // res.redirect('/');
+    res.send();
 });
+
 let port = 3000;
 app.use('/', router);
 
