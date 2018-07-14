@@ -29,6 +29,6 @@ ul li{
     color: #474545;
     padding-bottom: 0.5vw;
 }
-#form-edit{
+form[id^="form-edit"]{
     display: none;
 }

@@ -14,14 +14,14 @@
         <% teammates.forEach(function(mate) { %>
             <li id="<%= mate.id %>" ><%= mate.firstName + ' ' + mate.lastName %>
                     <input class="edit" type="submit" value="Edit" />
-                <form id="form-edit" action= "/edit/<%= mate.id %>"method="post">
+                <form id="form-edit-<%= mate.id %>" action= "/edit/<%= mate.id %>" method="post">
                       <p>First name:</p><br>
                       <input type="text" id="firstname-edit" name="firstname" value= <%= mate.firstName %> >
                       <br>
                       <p>Last name:</p><br>
                       <input type="text" id="lastname-edit" name="lastname" value= <%= mate.lastName %>>
                       <br><br>
-                      <input id="save" type="submit" value="Save">
+                      <input  onclick="editUser(<%= mate.id %>);" id="save" type="button" value="Save">
                 </form>
 
                     <input onclick="sId(<%= mate.id %>);" id="delete" type="button" value="Delete" />
@@ -103,19 +103,21 @@ function sId(someId){
     }
   });
 };
-
 //edit
-  $('#form-edit').submit(function (e) {
-    e.preventDefault();
-
-    const firstnameAdd = $(this).find('#firstname-edit').val();
-    const lastnameAdd = $(this).find('#lastname-edit').val();
-    const url = $(this).attr('action');
+function editUser(someId){
+    let _form = $('#form-edit-'+someId);
+    const firstnameAdd = _form.find('#firstname-edit').val();
+    const lastnameAdd = _form.find('#lastname-edit').val();
+    const url = _form.attr('action');
       $.post(url, {
         firstname: firstnameAdd,
         lastname: lastnameAdd
+      }).done(function (data) {
+        _form.parent()[0].childNodes[0].nodeValue = firstnameAdd +' '+lastnameAdd;
+        _form.hide();
       });
-    });
+    };
+
     </script>
 
 

@@ -51,12 +51,12 @@ router.post('/', (req, res) => {
 //edit
 router.post('/edit/:id', (req, res) => {
         saveData.forEach(function(item) {
-        if(item.id === req.params.id){
+        if(item.id == req.params.id){
             item.lastName = req.body.lastname;
             item.firstName = req.body.firstname;
+            console.log('Edit'+req.body.lastname);
         }
     });
-    // res.redirect('/');
     res.send();
 });
 
