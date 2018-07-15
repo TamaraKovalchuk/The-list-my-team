@@ -44,8 +44,9 @@ router.delete('/delete/:id', (req, res) => {
 //add
 router.post('/', (req, res) => {
     console.log(req.body);
-   saveData = [...saveData, {id: freeId++, firstName: req.body.firstname, lastName: req.body.lastname}];
-   res.send(saveData);
+    let newStudent = {id: freeId++, firstName: req.body.firstname, lastName: req.body.lastname};
+   saveData = [...saveData, newStudent];
+   res.send(newStudent);
 
 });
 //edit

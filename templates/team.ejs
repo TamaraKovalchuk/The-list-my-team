@@ -16,15 +16,15 @@
                     <input class="edit" type="submit" value="Edit" />
                 <form id="form-edit-<%= mate.id %>" action= "/edit/<%= mate.id %>" method="post">
                       <p>First name:</p><br>
-                      <input type="text" id="firstname-edit" name="firstname" value= <%= mate.firstName %> >
+                      <input type="text" id="firstname-edit-<%= mate.id %>" name="firstname" value= <%= mate.firstName %> >
                       <br>
                       <p>Last name:</p><br>
-                      <input type="text" id="lastname-edit" name="lastname" value= <%= mate.lastName %>>
+                      <input type="text" id="lastname-edit-<%= mate.id %>" name="lastname" value= <%= mate.lastName %>>
                       <br><br>
-                      <input  onclick="editUser(<%= mate.id %>);" id="save" type="button" value="Save">
+                      <input  onclick="editUser(<%= mate.id %>);" type="button" value="Save">
                 </form>
 
-                    <input onclick="sId(<%= mate.id %>);" id="delete" type="button" value="Delete" />
+                    <input onclick="sId(<%= mate.id %>);" type="button" value="Delete" />
 
 
             </li>
@@ -63,23 +63,36 @@ $(document).ready(function () {
       lastname: lastname
     }).done(function (data) {
       console.log('Post Saved');
-      console.log(data);
+      console.log(data.id);
       $('ul#ul').append(
-        '<li>' + firstname + ' ' + lastname +
+        '<li id="'+data.id+'">' + data.firstName + ' ' + data.lastName +
         '<input class="edit" type="submit" value="Edit" />' +
-        '<form class="id-form" action= "/edit/' + lastname + '" method="post">' +
+        '<form id="form-edit-'+data.id+'" action= "/edit/'+data.id+'" method="post">' +
         '<p>First name:</p><br>' +
-        '<input type="text" id="firstname" name="firstname">' +
+        '<input type="text" id="firstname-edit-'+data.id+'" name="firstname" value= '+data.firstName+' >' +
         '<br>' +
         '<p>Last name:</p><br>' +
-        '<input type="text" id="lastname" name="lastname">' +
+        '<input type="text" id="lastname-edit-'+data.id+'" name="lastname" value= '+data.lastName+' >' +
         ' <br><br>' +
-        '<input id="save" type="submit" value="Save">' +
+        '<input onclick="editUser('+data.id+');" type="button" value="Save">' +
         '</form>' +
-        '<form action="/delete/' + lastname + '">' +
-        '<input id="delete" type="submit" value="Delete" />' +
-        '</form>' +
+        '<input onclick="sId('+data.id+');" type="button" value="Delete" />' +
         '</li>'
+        // '<li>' + firstname + ' ' + lastname +
+        // '<input class="edit" type="submit" value="Edit" />' +
+        // '<form class="id-form" action= "/edit/' + lastname + '" method="post">' +
+        // '<p>First name:</p><br>' +
+        // '<input type="text" id="firstname" name="firstname">' +
+        // '<br>' +
+        // '<p>Last name:</p><br>' +
+        // '<input type="text" id="lastname" name="lastname">' +
+        // ' <br><br>' +
+        // '<input id="save" type="submit" value="Save">' +
+        // '</form>' +
+        // '<form action="/delete/' + lastname + '">' +
+        // '<input id="delete" type="submit" value="Delete" />' +
+        // '</form>' +
+        // '</li>'
       );
       // console.log(form);
       let list = document.getElementsByClassName('edit');
@@ -106,8 +119,8 @@ function sId(someId){
 //edit
 function editUser(someId){
     let _form = $('#form-edit-'+someId);
-    const firstnameAdd = _form.find('#firstname-edit').val();
-    const lastnameAdd = _form.find('#lastname-edit').val();
+    const firstnameAdd = _form.find('#firstname-edit-'+someId).val();
+    const lastnameAdd = _form.find('#lastname-edit-'+someId).val();
     const url = _form.attr('action');
       $.post(url, {
         firstname: firstnameAdd,
