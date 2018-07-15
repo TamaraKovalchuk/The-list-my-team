@@ -1,0 +1,21 @@
+{
+  "name": "The-list-my-team",
+  "version": "1.0.0",
+  "description": "Example for ejs templating engine",
+  "main": "express-ejs.js",
+  "scripts": {
+
+  },
+  "author": "Tamara Kovalchuk",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "npm": "^6.1.0",
+    "ejs": "^2.6.1"
+  }
+}
